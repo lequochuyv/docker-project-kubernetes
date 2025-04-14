@@ -7,9 +7,7 @@ build-init:
 	@echo "Build init..."
 	skaffold dev
 
-.PHONY: run-database
-run-database:
-	@echo "Run database..."
-	kubectl apply -f k8s/namespace.yaml
-	kubectl apply -f k8s/mysql-secret.yaml
-	kubectl apply -f k8s/mysql.yaml
+.PHONY: setup-service-db
+setup-service-db:
+	@echo "Setup service db..."
+	kubectl apply -f k8s/mysql-service.yaml
