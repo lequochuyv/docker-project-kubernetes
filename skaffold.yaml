@@ -1,0 +1,25 @@
+apiVersion: skaffold/v4beta13
+kind: Config
+metadata:
+  name: docker-project-develop
+build:
+  local:
+    push: false
+  artifacts:
+    - image: backend-local
+      context: back-end
+      docker:
+        dockerfile: Dockerfile
+    - image: frontend-local
+      context: front-end
+      docker:
+        dockerfile: Dockerfile
+    - image: mysql-db-local
+      context: back-end
+      docker:
+        dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - k8s/namespace.yaml
+    - k8s/mysql-secret.yaml
+    - k8s/mysql.yaml
