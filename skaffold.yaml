@@ -15,7 +15,7 @@ build:
       docker:
         dockerfile: Dockerfile
     - image: mysql-db-local
-      context: back-end
+      context: mysql
       docker:
         dockerfile: Dockerfile
 manifests:
