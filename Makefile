@@ -7,7 +7,7 @@ build-init:
 	@echo "Build init..."
 	skaffold dev
 
-.PHONY: setup-service-db
-setup-service-db:
-	@echo "Setup service db..."
-	kubectl apply -f k8s/mysql-service.yaml
+.PHONY: port-forward
+port-forward:
+	@echo "Port forward..."
+	kubectl port-forward -n project-kubernetes-namespace service/backend-nodejs-service 5000:5000

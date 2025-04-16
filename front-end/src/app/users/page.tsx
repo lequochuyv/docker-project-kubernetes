@@ -10,11 +10,12 @@ interface User {
 export default function Page() {
     const [users, setUsers] = useState<User[]>([]);
     const [loading, setLoading] = useState(true);
-
+    const backendUrl = process.env.BACKEND_URL
+    console.log("hiiis", backendUrl)
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://172.20.0.2:5000/users/list`);
+                const response = await fetch(`${backendUrl}/users/list`);
                 const data = await response.json();
                 setUsers(data);
                 setLoading(false);
@@ -38,7 +39,6 @@ export default function Page() {
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Age</th>
                         <th>Address</th>
                     </tr>
                 </thead>
@@ -46,7 +46,6 @@ export default function Page() {
                     {users.map((user, index) => (
                         <tr key={index}>
                             <td>{user.name}</td>
-                            <td>{user.age}</td>
                             <td>{user.address}</td>
                         </tr>
                     ))}
