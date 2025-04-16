@@ -6,6 +6,10 @@ build:
   local:
     push: false
   artifacts:
+    - image: mysql-db-local
+      context: mysql
+      docker:
+        dockerfile: Dockerfile
     - image: backend-local
       context: back-end
       docker:
@@ -14,12 +18,13 @@ build:
       context: front-end
       docker:
         dockerfile: Dockerfile
-    - image: mysql-db-local
-      context: mysql
-      docker:
-        dockerfile: Dockerfile
 manifests:
   rawYaml:
     - k8s/namespace.yaml
     - k8s/mysql-secret.yaml
     - k8s/mysql.yaml
+    - k8s/mysql-service.yaml
+    - k8s/backend.yaml
+    - k8s/backend-service.yaml
+    - k8s/frontend.yaml
+    - k8s/frontend-service.yaml

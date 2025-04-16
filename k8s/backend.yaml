@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-nodejs
+  namespace: project-kubernetes-namespace
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend-nodejs
+  template:
+    metadata:
+      labels:
+        app: backend-nodejs
+    spec:
+      containers:
+        - name: backend-nodejs
+          image: backend-local
+          ports:
+            - containerPort: 5000
+          envFrom:
+            - secretRef:
+                name: mysql-db-secret
+          env:
+            - name: PORT_BACKEND
+              value: "5000"
+            - name: MYSQL_HOST
+              value: mysql-db-service
+            - name: MYSQL_PORT
+              value: "3307"
+          livenessProbe:
+            httpGet:
+              path: /health-check
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 3
+            successThreshold: 1
+          readinessProbe:
+            httpGet:
+              path: /health-check
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 3
+            successThreshold: 1

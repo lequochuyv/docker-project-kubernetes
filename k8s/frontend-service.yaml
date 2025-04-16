@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-nextjs-service
+  namespace: project-kubernetes-namespace
+spec:
+  selector:
+    app: frontend-nextjs
+  type: LoadBalancer
+  ports:
+    - port: 3000 # Frontend service port
+      targetPort: 3000 # Frontend container port
