@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: frontend-nextjs
-          image: frontend-local
+          image: lequochuy1996/frontend-nextjs:v1.0
           ports:
             - containerPort: 3000
           env:

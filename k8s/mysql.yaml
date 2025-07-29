@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
         - name: mysql-db
-          image: mysql-db-local
+          image: lequochuy1996/mysql:v1.0
           ports:
             - containerPort: 3306
           envFrom:
