@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
         - name: mysql-db
-          image: lequochuy1996/mysql:v1.0
+          image: 760895899013.dkr.ecr.ap-southeast-1.amazonaws.com/nextwork-true-mysql:latest
           ports:
             - containerPort: 3306
           envFrom:
